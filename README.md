@@ -1,16 +1,102 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/CbzfTysD)
-# Homework - C Practice - Readme
+# C Practice Assignment Instructions
 
-Name:
+## Assignment Overview
+This assignment focuses on fundamental C programming concepts including variables, data types, control structures, functions, and arrays.
 
-Link to Assignment on Github: (copy and paste the link to your assignment repo here)
+## Learning Objectives
+- Understand basic C syntax and structure
+- Practice with different data types and variables
+- Implement control structures (loops, conditionals)
+- Create and use functions
+- Work with arrays and basic algorithms
 
-How many hours did it take you to complete this assignment (estimate)? 
+## Programs to Implement
 
-Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what capacity.  
-- one per row, add more if needed
+### 1. Hello World (`hello_world.c`)
+- Create a simple program that prints "Hello, World!"
+- Practice basic C program structure
 
+### 2. Variables and Types (`variables_and_types.c`)
+- Declare and initialize different variable types
+- Demonstrate integer, float, double, char, and string variables
+- Perform basic arithmetic operations
 
-Did you use any external resources (you do not have to cite in class material)? (Cite them below)  
-- one row per resource
+### 3. Input/Output (`input_output.c`)
+- Practice user input using `scanf()` and `fgets()`
+- Format output using `printf()`
+- Handle different data types in I/O operations
 
+### 4. Loops (`loops.c`)
+- Implement for, while, and do-while loops
+- Practice loop control and iteration
+- Calculate sums and perform repetitive operations
+
+### 5. Functions (`functions.c`)
+- Define and call functions
+- Pass parameters and return values
+- Implement recursive functions (factorial)
+
+### 6. Arrays (`arrays.c`)
+- Declare and initialize arrays
+- Perform array operations (sum, average, min, max)
+- Implement array traversal and manipulation
+
+## Compilation Instructions
+
+### Using Makefile (Recommended)
+```bash
+# Compile all programs
+make all
+
+# Compile specific program
+make hello_world
+
+# Run all programs
+make run
+
+# Clean compiled files
+make clean
+```
+
+### Manual Compilation
+```bash
+# Compile individual programs
+gcc -o hello_world src/hello_world.c
+gcc -o variables_and_types src/variables_and_types.c
+gcc -o input_output src/input_output.c
+gcc -o loops src/loops.c
+gcc -o functions src/functions.c
+gcc -o arrays src/arrays.c
+```
+
+## Testing Your Programs
+
+1. **Hello World**: Should print "Hello, World!" without any input
+2. **Variables and Types**: Should display various variable types and their values
+3. **Input/Output**: Test with different input values
+4. **Loops**: Test with different numbers to verify loop behavior
+5. **Functions**: Test with different number pairs and verify calculations
+6. **Arrays**: Test with different sets of numbers
+
+## Submission Requirements
+
+1. All source files must be in the `src/` directory
+2. Include proper comments and documentation
+3. Follow C coding standards and best practices
+4. Ensure all programs compile without warnings
+5. Test all programs thoroughly
+
+## Grading Criteria
+
+- **Correctness**: Programs work as expected
+- **Code Quality**: Clean, readable, well-commented code
+- **Completeness**: All required programs implemented
+- **Documentation**: Proper comments and documentation
+
+## Due Date
+[To be specified by instructor]
+
+## Resources
+- C Programming Language by Kernighan and Ritchie
+- Online C tutorials and documentation
+- Compiler documentation (GCC)
