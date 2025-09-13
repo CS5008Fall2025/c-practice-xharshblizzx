@@ -1,102 +1,64 @@
-# C Practice Assignment Instructions
+# C Practice Assignment
 
-## Assignment Overview
-This assignment focuses on fundamental C programming concepts including variables, data types, control structures, functions, and arrays.
+**Name:** Harsh Dalal  
+**GitHub Username:** xharshblizzx  
+**Link to Assignment on Github:** https://github.com/CS5008Fall2025/c-practice-xharshblizzx
 
-## Learning Objectives
-- Understand basic C syntax and structure
-- Practice with different data types and variables
-- Implement control structures (loops, conditionals)
-- Create and use functions
-- Work with arrays and basic algorithms
+## Assignment Information
 
-## Programs to Implement
+**How many hours did it take you to complete this assignment (estimate)?**  
+Approximately 4-6 hours
 
-### 1. Hello World (`hello_world.c`)
-- Create a simple program that prints "Hello, World!"
-- Practice basic C program structure
+**Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what capacity.**  
+No collaboration with other students or TAs for this assignment.
 
-### 2. Variables and Types (`variables_and_types.c`)
-- Declare and initialize different variable types
-- Demonstrate integer, float, double, char, and string variables
-- Perform basic arithmetic operations
+**Did you use any external resources (you do not have to cite in class material)? (Cite them below)**  
+- C Programming Language by Kernighan and Ritchie (reference for syntax)
+- Online C documentation for standard library functions
+- GCC compiler documentation for compilation flags
 
-### 3. Input/Output (`input_output.c`)
-- Practice user input using `scanf()` and `fgets()`
-- Format output using `printf()`
-- Handle different data types in I/O operations
+## About
 
-### 4. Loops (`loops.c`)
-- Implement for, while, and do-while loops
-- Practice loop control and iteration
-- Calculate sums and perform repetitive operations
+This repository contains C programming practice exercises for CS5008 Fall 2025.
 
-### 5. Functions (`functions.c`)
-- Define and call functions
-- Pass parameters and return values
-- Implement recursive functions (factorial)
+### Repository Structure
+- `src/` - Contains all C source files
+- `instructions/` - Contains assignment instructions
+- `Report.md` - Assignment report
 
-### 6. Arrays (`arrays.c`)
-- Declare and initialize arrays
-- Perform array operations (sum, average, min, max)
-- Implement array traversal and manipulation
+### How to Compile and Run
 
-## Compilation Instructions
-
-### Using Makefile (Recommended)
+To compile the main assignment program:
 ```bash
-# Compile all programs
-make all
-
-# Compile specific program
-make hello_world
-
-# Run all programs
-make run
-
-# Clean compiled files
-make clean
+gcc -o practice src/practice.c
+./practice
 ```
 
-### Manual Compilation
+To compile other practice programs:
 ```bash
-# Compile individual programs
-gcc -o hello_world src/hello_world.c
-gcc -o variables_and_types src/variables_and_types.c
-gcc -o input_output src/input_output.c
-gcc -o loops src/loops.c
-gcc -o functions src/functions.c
-gcc -o arrays src/arrays.c
+gcc -o program_name src/filename.c
+./program_name
 ```
 
-## Testing Your Programs
+Using the provided batch files (Windows):
+```cmd
+compile.bat
+run_all.bat
+```
 
-1. **Hello World**: Should print "Hello, World!" without any input
-2. **Variables and Types**: Should display various variable types and their values
-3. **Input/Output**: Test with different input values
-4. **Loops**: Test with different numbers to verify loop behavior
-5. **Functions**: Test with different number pairs and verify calculations
-6. **Arrays**: Test with different sets of numbers
+### Programs Included
+1. **practice.c** - Main assignment file with all required functions:
+   - `swap()` - Swaps two integer values
+   - `create_fib_array()` - Creates Fibonacci array
+   - `reverse_array()` - Reverses an array
+   - `double_array_size()` - Doubles array size
+   - `copy_array_start_end_loop()` - Copies array with wrap-around
+   - `create_point()` - Creates a point structure
+   - `create_polygon()` - Creates polygon structure
+   - `create_rectangle()` - Creates rectangle polygon
+   - `create_triangle()` - Creates triangle polygon
+   - `calculate_polygon_area()` - Calculates polygon area
 
-## Submission Requirements
+2. **practice.h** - Header file with function prototypes and structures
 
-1. All source files must be in the `src/` directory
-2. Include proper comments and documentation
-3. Follow C coding standards and best practices
-4. Ensure all programs compile without warnings
-5. Test all programs thoroughly
-
-## Grading Criteria
-
-- **Correctness**: Programs work as expected
-- **Code Quality**: Clean, readable, well-commented code
-- **Completeness**: All required programs implemented
-- **Documentation**: Proper comments and documentation
-
-## Due Date
-[To be specified by instructor]
-
-## Resources
-- C Programming Language by Kernighan and Ritchie
-- Online C tutorials and documentation
-- Compiler documentation (GCC)
+3. Additional practice programs demonstrating C fundamentals
