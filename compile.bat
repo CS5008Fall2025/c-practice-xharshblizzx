@@ -62,6 +62,15 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+REM Compile practice.c (main assignment file)
+echo Compiling practice.c...
+gcc -Wall -Wextra -std=c99 -g -o bin/practice.exe src/practice.c
+if %errorlevel% neq 0 (
+    echo Error compiling practice.c
+    pause
+    exit /b 1
+)
+
 echo.
 echo All programs compiled successfully!
 echo.

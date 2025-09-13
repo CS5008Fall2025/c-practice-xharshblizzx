@@ -46,5 +46,11 @@ echo ========================================
 bin\arrays.exe
 echo.
 
+echo ========================================
+echo Running Main Practice Program
+echo ========================================
+bin\practice.exe
+echo.
+
 echo All programs have been executed!
 pause
