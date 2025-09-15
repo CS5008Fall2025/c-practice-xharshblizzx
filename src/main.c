@@ -2,9 +2,9 @@
  * This program runs the various cpractice.c functions. While it is essentially
  * a test, it does not do a full test of the functions. You should write your
  * own tests in tests.c.
- * 
- * Student Name:
- * Semester:
+ *
+ * Student Name: Harsh Dalal
+ * Semester: Fall 2025
 */
 
 #include <stdio.h>  // basic input and output
