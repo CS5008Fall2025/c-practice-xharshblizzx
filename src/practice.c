@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 // Structure for points
 typedef struct {
@@ -36,46 +37,34 @@ double calculate_polygon_area(Polygon* poly);
 // 1.1) Swap function
 void swap(int* a, int* b) {
     if (a == NULL || b == NULL) return;
-    
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-// 1.2) Create Fibonacci array
+// 1.2) Create Fibonacci array - FIXED: Start with 0, not 1
 int* create_fib_array(int n) {
     if (n <= 0) return NULL;
-    
+
     int* fib_array = (int*)malloc(n * sizeof(int));
     if (fib_array == NULL) return NULL;
-    
-    if (n == 1) {
-        fib_array[0] = 0;
-    } else if (n == 2) {
-        fib_array[0] = 0;
-        fib_array[1] = 1;
-    } else {
-        fib_array[0] = 0;
-        fib_array[1] = 1;
-        for (int i = 2; i < n; i++) {
-            fib_array[i] = fib_array[i-1] + fib_array[i-2];
-        }
+
+    // Traditional Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, ...
+    if (n >= 1) fib_array[0] = 0;  // CHANGED: was 1, now 0
+    if (n >= 2) fib_array[1] = 1;
+    for (int i = 2; i < n; i++) {
+        fib_array[i] = fib_array[i-1] + fib_array[i-2];
     }
-    
+
     return fib_array;
 }
 
-// 1.3) Reverse array
+// 1.3) Reverse array - IMPROVED: Better edge case handling
 void reverse_array(int* arr, int size) {
-    if (arr == NULL || size <= 0) return;
+    if (arr == NULL || size <= 1) return;  // CHANGED: <= 0 to <= 1
     
-    int start = 0;
-    int end = size - 1;
-    
-    while (start < end) {
-        swap(&arr[start], &arr[end]);
-        start++;
-        end--;
+    for (int i = 0; i < size / 2; i++) {
+        swap(&arr[i], &arr[size - 1 - i]);
     }
 }
 
@@ -186,7 +175,7 @@ double calculate_polygon_area(Polygon* poly) {
         area -= poly->vertices[j].x * poly->vertices[i].y;
     }
     
-    return abs(area) / 2.0;
+    return fabs(area) / 2.0;
 }
 
 // Test function to verify implementations
