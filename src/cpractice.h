@@ -1,19 +1,19 @@
 /**
- * Student Name:
- * Semester:
- * 
+ * Student Name: Harsh Dalal
+ * Semester: Fall 2025
+ *
  * C Practice
  * This assignment is to help you practice using C. Is is setup to
  * a set of various functions that tests the ideas you are learning.
- * 
+ *
  * In addition to this file, you will need to create a test file, that tests
  * every function!
- * 
+ *
  * This is called a 'header' library, meaning it is a collection of functions
  * that can be used in other files. This is the standard way of creating
  * libraries in C. In this case, the functions are implemented in the header file (.h)
  * but sometimes they are separated between header declarations (.h) and source files (.c)
- * which  you will explore in other assignments. 
+ * which  you will explore in other assignments.
 */
 
 #ifndef C_PRACTICE_H
@@ -43,10 +43,12 @@ typedef struct {
 
 /**
  * Swaps the values of a and b. Makes use of pointers to change the values
- * of the variables in the calling function. 
+ * of the variables in the calling function.
 **/
 void swap(int *a, int *b){
-
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 /**
@@ -88,20 +90,35 @@ void print_array(int *arr, int size)
  * here is a quick list of numbers: https://www.math.net/list-of-fibonacci-numbers
  **/
 int* create_array_of_ints_fib(int size){
-    return NULL;
+    if (size <= 0) {
+        return NULL;
+    }
+    int* arr = malloc(sizeof(int) * size);
+    if (size >= 1) {
+        arr[0] = 1;
+    }
+    if (size >= 2) {
+        arr[1] = 1;
+    }
+    for (int i = 2; i < size; i++) {
+        arr[i] = arr[i-1] + arr[i-2];
+    }
+    return arr;
 }
 
 /**
  * Reverses an array *in place* (meaning you don't copy into another array)
- * 
+ *
  * For example, if the array is [1, 2, 3, 4, 5] then the array should be
  * [5, 4, 3, 2, 1]
- * 
- * To receive full points, you should only loop through *half* of the array. (size/2). 
- * Consider using swap. 
+ *
+ * To receive full points, you should only loop through *half* of the array. (size/2).
+ * Consider using swap.
 */
 void reverse_array(int *arr, int size){
-    
+    for (int i = 0; i < size / 2; i++) {
+        swap(&arr[i], &arr[size - 1 - i]);
+    }
 }
 
 
@@ -109,13 +126,18 @@ void reverse_array(int *arr, int size){
 /**
  * Doubles the size of an array, and copies all previous values into the new array.
  * All other values should be set to 0. Returns a pointer to the new array
- * 
+ *
  * You may want to look at calloc to help with this, to confirm all values are set to 0.
  * though you don't have to, if you want to loop through and set them to 0 yourself.
- * 
+ *
 */
 int* double_array_size(int *arr, int size){
-    return NULL;
+    int new_size = size * 2;
+    int* new_arr = calloc(new_size, sizeof(int)); // calloc sets to 0
+    for (int i = 0; i < size; i++) {
+        new_arr[i] = arr[i];
+    }
+    return new_arr;
 }
 
 /**
@@ -143,7 +165,31 @@ int* double_array_size(int *arr, int size){
  * to get an OB1 error!
  */
 int* copy_array_start_end_loop(int *arr, int size, int start, int end, int *new_size) {
-    return NULL;
+    if (start < 0 || start >= size || end < 0 || end >= size) {
+        return NULL;
+    }
+    int copy_size;
+    if (start <= end) {
+        copy_size = end - start + 1;
+    } else {
+        copy_size = (size - start) + (end + 1);
+    }
+    *new_size = copy_size;
+    int* new_arr = malloc(sizeof(int) * copy_size);
+    int idx = 0;
+    if (start <= end) {
+        for (int i = start; i <= end; i++) {
+            new_arr[idx++] = arr[i];
+        }
+    } else {
+        for (int i = start; i < size; i++) {
+            new_arr[idx++] = arr[i];
+        }
+        for (int i = 0; i <= end; i++) {
+            new_arr[idx++] = arr[i];
+        }
+    }
+    return new_arr;
 }
 
 /* 
@@ -155,18 +201,27 @@ Practice with struts
  * and returns the new point
 */
 Point* create_point(int x, int y){
-    return NULL;
+    Point* p = malloc(sizeof(Point));
+    p->x = x;
+    p->y = y;
+    return p;
 }
 
 /**
  * Creates a polygon with the given size. Allocates it on the heap. (malloc)
  * and returns the new polygon
- * 
+ *
  * For the points, you are creating the array of points, but you do not have to allocate
- * the point values. it is just a polygon of eventual size, and an array of empty points. 
+ * the point values. it is just a polygon of eventual size, and an array of empty points.
 */
 Polygon* create_polygon(int size){
-    return NULL;
+    Polygon* poly = malloc(sizeof(Polygon));
+    poly->size = size;
+    poly->points = malloc(sizeof(Point*) * size);
+    for (int i = 0; i < size; i++) {
+        poly->points[i] = NULL; // empty points
+    }
+    return poly;
 }
 
 
@@ -175,12 +230,19 @@ Polygon* create_polygon(int size){
  * all the points, to free them, free the array, and then free the polygon itself.
 */
 void free_polygon(Polygon *p){
-    
+    if (p == NULL) return;
+    for (int i = 0; i < p->size; i++) {
+        if (p->points[i] != NULL) {
+            free(p->points[i]);
+        }
+    }
+    free(p->points);
+    free(p);
 }
 
 /**
  * Creates a rectangle of width and height, using the polygon struct and returns it.
- * 
+ *
  * You can assume the following order of points
  * 0, 0
  * width, 0
@@ -188,20 +250,29 @@ void free_polygon(Polygon *p){
  * 0, height
 */
 Polygon* create_rectangle(int width, int height){
-    return NULL;
+    Polygon* rect = create_polygon(4);
+    rect->points[0] = create_point(0, 0);
+    rect->points[1] = create_point(width, 0);
+    rect->points[2] = create_point(width, height);
+    rect->points[3] = create_point(0, height);
+    return rect;
 }
 
 
 /**
  * Creates a (right) triangle of width and height, using the polygon struct and returns it.
- * 
+ *
  * You can assume the following order of points
  * 0, 0
  * width, 0
  * width, height
 */
 Polygon* create_triangle(int width, int height){
-    return NULL;
+    Polygon* tri = create_polygon(3);
+    tri->points[0] = create_point(0, 0);
+    tri->points[1] = create_point(width, 0);
+    tri->points[2] = create_point(width, height);
+    return tri;
 }
 
 /**
@@ -224,18 +295,24 @@ void print_polygon(Polygon *p){
 
 /**
  * Calculates the area of the polygon using the shoestring formula.
- * 
+ *
  * The shoestring formula will loop through every point, and calculates the area by
- * 
+ *
  * area +=  i->x * i+1->y - i+1->x * i->y
- * 
+ *
  * however, when i+1 is greater than size, you will need to loop back around to the beginning (so think of
  * setting i+1 to j, where j= (i+1) % p->size before running the calculations)
- * 
+ *
  * after area is summed across all points, divide by 2.0 and return the area.
 */
 double calculate_polygon_area(Polygon *p){
-    return 0.0;
+    if (p == NULL || p->size < 3) return 0.0;
+    double area = 0.0;
+    for (int i = 0; i < p->size; i++) {
+        int j = (i + 1) % p->size;
+        area += (double)p->points[i]->x * p->points[j]->y - (double)p->points[j]->x * p->points[i]->y;
+    }
+    return area / 2.0;
 }
 
 #endif // C_PRACTICE_H
